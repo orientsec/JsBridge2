@@ -126,7 +126,7 @@ fun IBridgeWebView.install(channel: MessageChannel): JsBridge {
 fun IBridgeWebView.loadJsBridgeScript() {
     val mill = measureTimeMillis {
         try {
-            val js = view.context.assets.open("jsbridge/index.min.js")
+            val js = view.context.assets.open("js_bridge/index.min.js")
                 .bufferedReader()
                 .use {
                     val sb = StringBuilder()
