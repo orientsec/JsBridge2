@@ -14,7 +14,7 @@ import org.json.JSONObject
  * Interface MessageChannel defines the behavior and management mechanisms for message passing
  * between Native and JavaScript.
  */
-interface MessageChannel {
+interface MessageChannel : Destroyable {
     /**
      * Called when the channel becomes active.
      * This can be used to perform initialization or preparation operations to ensure the
@@ -129,6 +129,14 @@ class WebkitMessageChannel(private val webView: WebView) : MessageChannel,
             listeners.forEach { it.onMessage(data) }
         }
     }
+
+    override fun destroy() {
+        if (WebViewFeature.isFeatureSupported(WebViewFeature.WEB_MESSAGE_LISTENER)) {
+            WebViewCompat.removeWebMessageListener(webView, "bridgePort")
+        } else {
+            error("not supported: WEB_MESSAGE_LISTENER")
+        }
+    }
 }
 
 /**
@@ -177,5 +185,8 @@ class StandardMessageChannel(private val webView: IBridgeWebView) : MessageChann
         } else {
             listeners.forEach { webView.runOnUiThread { it.onMessage(message) } }
         }
+    }
+
+    override fun destroy() {
     }
 }

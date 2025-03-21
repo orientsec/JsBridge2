@@ -155,6 +155,7 @@ internal class JsBridgeInternal(
                 (it.value as Destroyable).destroy()
             }
         }
+        messageChannel.destroy()
     }
 
     /**

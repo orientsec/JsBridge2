@@ -6,7 +6,7 @@ import android.view.View
 import android.webkit.WebView
 
 
-class BridgeWebView : WebView, IBridgeWebView {
+open class BridgeWebView : WebView, IBridgeWebView {
     override val view: View = this
     override val jsBridge: JsBridge = install()
 
