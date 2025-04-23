@@ -9,9 +9,15 @@ const config = {
         rules: [
             {
                 test: /\.tsx?$/,
+                loader: 'babel-loader',
+                // 如果对已经编译过的文件再进行编译可能会增加文件大小和错误，因此这里最好还是指定
+                exclude: /node_modules/
+            },
+            {
+                test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
-            }
+            },
         ]
     },
     resolve: {

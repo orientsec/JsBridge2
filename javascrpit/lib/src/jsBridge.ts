@@ -162,7 +162,7 @@ export class JsBridge {
      * @param responseCallback 响应回调
      */
     private handleHandlerError(error: unknown, type: string, responseCallback: HandlerCallback): void {
-        let errorMessage
+        let errorMessage: string
         if (error instanceof TypeError) {
             errorMessage = 'invalid argument type'
         } else if (error instanceof ReferenceError) {
@@ -180,7 +180,7 @@ export class JsBridge {
      * @returns 错误消息
      */
     private handlePostMessageError(error: unknown) {
-        let errorMessage
+        let errorMessage: string
         if (error instanceof TypeError) {
             errorMessage = 'bridge channel method not available: postMessage or onMessage is not a function'
         } else if (error instanceof SecurityError) {
@@ -458,6 +458,7 @@ export class JsBridge {
      * @param data 消息数据
      */
     onMessage(data: string): void {
+        logger.info(`jsBridge onMessage:[${data}]`)
         const message = this.parseJSON(data, 'message')
         if (!message) {
             return

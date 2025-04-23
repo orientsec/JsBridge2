@@ -149,7 +149,7 @@ class StandardMessageChannel(private val webView: IBridgeWebView) : MessageChann
     Loggable by BridgeLogger {
 
     companion object {
-        private const val JS_MESSAGE_FROM_NATIVE = "javascript:jsBridge.onMessage('%s');"
+        private const val JS_MESSAGE_FROM_NATIVE = "jsBridge.onMessage(%s);"
     }
 
     private val listeners: MutableSet<MessageListener> = mutableSetOf()
@@ -165,7 +165,7 @@ class StandardMessageChannel(private val webView: IBridgeWebView) : MessageChann
         // Must find the main thread to pass data out IMPORTANT
         webView.runOnUiThread {
             info("evaluate javascript -> $script")
-            webView.evaluateJavascript(script, null)
+            webView.evaluateJavascript(script)
         }
     }
 

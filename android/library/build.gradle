@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'maven-publish'
 
 android {
     compileSdk 35
@@ -32,4 +33,18 @@ dependencies {
     implementation 'com.android.support:support-annotations:28.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.webkit:webkit:1.6.1"
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.orientsec'
+            artifactId = 'jsbridge2'
+            version = '1.0.0'
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
 }
