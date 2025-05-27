@@ -42,7 +42,7 @@ open class BridgeWebView : WebView, IBridgeWebView {
     }
 
     override fun destroy() {
-        super.destroy()
         (this as IBridgeWebView).destroy()
+        super.destroy()
     }
 }
