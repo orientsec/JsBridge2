@@ -13,9 +13,10 @@ const config = {
                     {
                         loader: 'babel-loader',
                     },
-                    {
-                        loader: 'ts-loader',
-                    }
+                    // {
+                    //     loader: 'ts-loader',
+                    //     options: { transpileOnly: true },
+                    // }
                 ],
                 exclude: /node_modules/
             }

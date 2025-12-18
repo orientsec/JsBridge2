@@ -29,12 +29,12 @@ const config = {
                 }
             }
         ],
-        // [
-        //     '@babel/preset-typescript',
-        //     {
-        //         allowDeclareFields: true
-        //     }
-        // ],
+        [
+            '@babel/preset-typescript',
+            {
+                allowDeclareFields: true
+            }
+        ],
     ],
     plugins: [
         // // 避免多次编译helper函数和polyfill全局污染问题
