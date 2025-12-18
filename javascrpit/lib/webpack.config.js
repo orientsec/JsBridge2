@@ -9,15 +9,16 @@ const config = {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: 'babel-loader',
-                // 如果对已经编译过的文件再进行编译可能会增加文件大小和错误，因此这里最好还是指定
+                use: [
+                    {
+                        loader: 'babel-loader',
+                    },
+                    {
+                        loader: 'ts-loader',
+                    }
+                ],
                 exclude: /node_modules/
-            },
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/
-            },
+            }
         ]
     },
     resolve: {
@@ -25,16 +26,20 @@ const config = {
     },
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: '[name].min.js',
-        library: 'JsBridge',
-        libraryExport: ['default'],
-        libraryTarget: 'umd'
+        filename: 'JsBridge.min.js',
+        globalObject: 'this',
+        library: {
+            name: 'JsBridge',
+            type: 'window',
+        }
     },
     mode: 'production',
     // mode: 'development',
     optimization: {
+        minimize: true,
         minimizer: [
             new TerserPlugin({
+                extractComments: false,
                 include: [/\.min\.js$/]
             }),
         ]

@@ -15,7 +15,7 @@ const config = {
             '@babel/preset-env',
             {
                 // 模块导出类型
-                modules: 'commonjs',
+                modules: false,
                 // 根据实际代码中使用的ES6/ES7代码,以及与你指定的targets，按需引入对应的polyfill
                 useBuiltIns: 'usage',
                 // 同时需要安装包core-js@3
@@ -24,22 +24,26 @@ const config = {
                 // "debug": false,
                 // // 浏览器支持情况
                 targets: {
-                    ios: '8',
-                    android: '6',
-                    ie: '9'
+                    ios: '12',
+                    android: '7'
                 }
             }
         ],
-        ['@babel/preset-flow']
+        // [
+        //     '@babel/preset-typescript',
+        //     {
+        //         allowDeclareFields: true
+        //     }
+        // ],
     ],
     plugins: [
         // // 避免多次编译helper函数和polyfill全局污染问题
-        // ["@babel/plugin-transform-runtime", {
-        //   // 同时需要安装包@babel/runtime-corejs3,其包含helpers和core-js
-        //   "helpers": true, // 提取公共运行时代码helpers
-        //   "corejs": 3, // 提供polyfill
-        //   "regenerator": true, // 可避免全局作用域代码的污染
-        //   "useESModules": true, // 默认false，如果是true将不会将ES模块转化为CommonJS模块，这样会减小打包体积
+        // ['@babel/plugin-transform-runtime', {
+        //     // 同时需要安装包@babel/runtime-corejs3,其包含helpers和core-js
+        //     'helpers': true, // 提取公共运行时代码helpers
+        //     'corejs': 3, // 提供polyfill
+        //     'regenerator': true, // 可避免全局作用域代码的污染
+        //     'useESModules': false, // 默认false，如果是true将不会将ES模块转化为CommonJS模块，这样会减小打包体积
         // }],
 
         // 以下添加了proposal阶段的提案，这些提案已被确定
@@ -53,7 +57,7 @@ const config = {
             {
                 legacy: true
             }
-        ]
+        ],
     ]
 }
 

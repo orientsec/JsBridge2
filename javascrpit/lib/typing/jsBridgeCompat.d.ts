@@ -1,11 +1,11 @@
 /**
  * 简化的回调函数类型
  */
-declare type SimpleCallback = (data?: string | null) => void;
+type SimpleCallback = (data?: string | null) => void;
 /**
  * 消息处理函数类型，与旧版代码兼容
  */
-declare type MessageHandlerFunc = (data: string | undefined | null, callback: SimpleCallback) => void;
+type MessageHandlerFunc = (data: string | undefined | null, callback: SimpleCallback) => void;
 /**
  * 全局接口扩展
  */

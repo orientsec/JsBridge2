@@ -1,6 +1,5 @@
-import { JsBridge, MessageHandler, HandlerCallback } from './jsBridge'
+import { JsBridge } from './jsBridge'
 import { JsBridgeCompat } from './jsBridgeCompat'
+export { JsBridge, JsBridgeCompat }
 
 JsBridgeCompat.getInstance()
-
-export { MessageHandler, HandlerCallback, JsBridge, JsBridgeCompat }
